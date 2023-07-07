@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import HelloWorld from './components/HelloWorld.vue'
+import { loadFull } from "tsparticles"
+import type { Engine } from 'tsparticles-engine'
+
+const particlesInit = async (engine: Engine) => {
+    await loadFull(engine)
+}
+
+const particlesLoaded = async (container: any) => {
+    console.log('Particles container loaded', container)
+}
+
 </script>
 
 <template>
-  <div>
-    <a href="https://vitejs.dev" target="_blank">
-      <img src="/vite.svg" class="logo" alt="Vite logo" />
-    </a>
-    <a href="https://vuejs.org/" target="_blank">
-      <img src="./assets/vue.svg" class="logo vue" alt="Vue logo" />
-    </a>
-  </div>
-  <HelloWorld msg="Vite + Vue" />
+    <Particles id="tsparticles"
+               :particlesInit="particlesInit"
+               :particlesLoaded="particlesLoaded"
+               url="src/assets/s.json"
+    />
+    <div class="one">
+
+
+    </div>
 </template>
 
-<style scoped>
-.logo {
-  height: 6em;
-  padding: 1.5em;
-  will-change: filter;
-  transition: filter 300ms;
-}
-.logo:hover {
-  filter: drop-shadow(0 0 2em #646cffaa);
-}
-.logo.vue:hover {
-  filter: drop-shadow(0 0 2em #42b883aa);
+<style>
+body {
+    cursor: url(https://cdn.jsdelivr.net/gh/Tomotoes/images/blog/default.cur), auto !important;
+    background: radial-gradient(#313131, #0a0a0a);
 }
 </style>
