@@ -3,20 +3,11 @@ import 'APlayer/dist/APlayer.min.css';
 import APlayer from 'aplayer';
 import {onMounted, ref} from "vue";
 
-const audioList = ref([
-    {
-        name: '前前前世',
-        artist: 'RADWIMPS',
-        url: 'http://music.163.com/song/media/outer/url?id=1956590637.mp3',
-        cover: 'http://p2.music.126.net/9oe1CvAUG724wNQh6BOgtA==/109951167254470935.jpg'
-    }
-])
+const audioList = ref([])
 
 onMounted(() => {
     const audio = localStorage.getItem('audio')
-    if (audio === null) {
-        localStorage.setItem("audio", JSON.stringify(audioList.value))
-    } else {
+    if (audio !== null) {
         audioList.value = JSON.parse(audio)
     }
     new APlayer({
@@ -30,5 +21,5 @@ onMounted(() => {
 </script>
 
 <template>
-    <div id="a-player"></div>
+    <div id="a-player" v-show="audioList.length>0"></div>
 </template>

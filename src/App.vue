@@ -3,6 +3,7 @@ import {onMounted, ref} from "vue";
 import {bingImgUrl} from "@/api/bing.js";
 import axios from "axios";
 import Aplayer from "@/components/aplayer.vue";
+import Setting from "@/components/setting.vue";
 
 const backgroundImg = ref("")
 const mouseOver = ref(false)
@@ -68,13 +69,35 @@ onMounted(() => {
                 -「<strong>{{ oneNote[1] }}</strong>」
             </p>
             <div class="item-btn">
-                <el-button round><el-icon class="el-icon--left"><i-logos-hexo/></el-icon>HEXO</el-button>
-                <el-button round><el-icon class="el-icon--left"><i-logos-base/></el-icon>ALIST</el-button>
-                <el-button round><el-icon class="el-icon--left"><i-heroicons-outline-translate/></el-icon>关于</el-button>
+                <a href="./hexo">
+                    <el-button round>
+                        <el-icon class="el-icon--left">
+                            <i-logos-hexo/>
+                        </el-icon>
+                        HEXO
+                    </el-button>
+                </a>
+                <a href="./alist">
+                    <el-button round>
+                        <el-icon class="el-icon--left">
+                            <i-logos-base/>
+                        </el-icon>
+                        ALIST
+                    </el-button>
+                </a>
+                <a href="./#">
+                    <el-button round>
+                        <el-icon class="el-icon--left">
+                            <i-heroicons-outline-translate/>
+                        </el-icon>
+                        关于
+                    </el-button>
+                </a>
             </div>
         </div>
     </div>
     <Aplayer></Aplayer>
+    <Setting></Setting>
 </template>
 
 <style scoped lang="less">
@@ -105,11 +128,12 @@ onMounted(() => {
 
             .logo {
                 border-radius: 50%;
+                box-shadow: var(--el-box-shadow-lighter);
                 width: 7.5rem;
                 height: 7.5rem;
             }
 
-            .png{
+            .png {
                 @keyframes rotateImage {
                     from {
                         transform: rotate(0deg)
@@ -191,6 +215,9 @@ onMounted(() => {
             display: flex;
             justify-content: center;
             align-items: center;
+            a{
+                margin: 0 0.5rem;
+            }
         }
 
     }
